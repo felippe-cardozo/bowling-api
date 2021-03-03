@@ -1,0 +1,1 @@
+ class GameInvalidError < StandardError; end

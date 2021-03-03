@@ -17,16 +17,16 @@ ActiveRecord::Schema.define(version: 2021_03_01_232825) do
   enable_extension "plpgsql"
 
   create_table "balls", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.integer "pinfalls"
-    t.integer "number"
-    t.uuid "frame_id"
+    t.integer "pinfalls", null: false
+    t.integer "number", null: false
+    t.uuid "frame_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "frames", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "game_id"
-    t.integer "number"
+    t.uuid "game_id", null: false
+    t.integer "number", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
