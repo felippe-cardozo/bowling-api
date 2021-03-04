@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2021_03_01_232825) do
     t.uuid "frame_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["frame_id", "number"], name: "index_balls_on_frame_id_and_number", unique: true
   end
 
   create_table "frames", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

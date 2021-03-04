@@ -61,7 +61,7 @@ RSpec.describe Frame do
         game = Game.create_with_initial_state!
         frame = game.frames.find_by(number: 1)
         frame.balls.create(number: 1, pinfalls: 9)
-        frame.balls.create(number: 1, pinfalls: 1)
+        frame.balls.create(number: 2, pinfalls: 1)
 
         expect(frame.spare?).to be true
       end
@@ -143,7 +143,7 @@ RSpec.describe Frame do
         game = Game.create_with_initial_state!
         frame = game.frames.find_by(number: 9)
         frame.balls.create(number: 1, pinfalls: 5)
-        frame.balls.create(number: 1, pinfalls: 4)
+        frame.balls.create(number: 2, pinfalls: 4)
 
         expect(frame.complete?).to be true
       end

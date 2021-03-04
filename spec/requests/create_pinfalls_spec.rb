@@ -18,6 +18,20 @@ RSpec.describe "POST /api/games/:id/frames/:number/pinfalls" do
     end
   end
 
+  context 'when ball_number is duplicated for frame' do
+    it 'returns 409, conflict' do
+      game = Game.create_with_initial_state!
+      params = { ball_number: 1, pinfalls: 4 }
+
+      post "/api/games/#{game.id}/frames/1/pinfalls", params: params
+      expect(response.status).to eq(201)
+
+      post "/api/games/#{game.id}/frames/1/pinfalls", params: params
+      expect(response.status).to eq(409)
+
+    end
+  end
+
   context 'when game is not valid' do
     it 'returns 422' do
       game = Game.create_with_initial_state!

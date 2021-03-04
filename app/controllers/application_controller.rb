@@ -21,4 +21,8 @@ class ApplicationController < ActionController::API
   def not_found_response(_)
     head :not_found
   end
+
+  def not_unique_response(_exception)
+    return head :conflict
+  end
 end
