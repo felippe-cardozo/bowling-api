@@ -13,6 +13,11 @@ class Frame < ApplicationRecord
     pinfalls.sum == 10 && pinfalls.exclude?(10)
   end
 
+  def pinfalls(max_balls=3)
+    balls_to_sum = balls.where(number: (1..max_balls))
+    balls_to_sum.pluck(:pinfalls).sum
+  end
+
   def complete?
     return true if balls.count == 2 && !last_frame?
     return true if balls.count == 3
