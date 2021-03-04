@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe "POST /api/games/:id/frames/:number/pinfalls" do
   context 'when everything is valid' do
     it 'creates a ball with a number of pinfalls for the given frame' do
-      game = Game.create_with_initial_state!
+      game = GameService.create_with_initial_state!
       params = { ball_number: 1, pinfalls: 4 }
 
       expect { post "/api/games/#{game.id}/frames/1/pinfalls", params: params }.to change(Ball, :count).by(1)
@@ -20,7 +20,7 @@ RSpec.describe "POST /api/games/:id/frames/:number/pinfalls" do
 
   context 'when ball_number is duplicated for frame' do
     it 'returns 409, conflict' do
-      game = Game.create_with_initial_state!
+      game = GameService.create_with_initial_state!
       params = { ball_number: 1, pinfalls: 4 }
 
       post "/api/games/#{game.id}/frames/1/pinfalls", params: params
@@ -34,7 +34,7 @@ RSpec.describe "POST /api/games/:id/frames/:number/pinfalls" do
 
   context 'when game is not valid' do
     it 'returns 422' do
-      game = Game.create_with_initial_state!
+      game = GameService.create_with_initial_state!
       params = { ball_number: 1, pinfalls: 11 }
 
       post "/api/games/#{game.id}/frames/1/pinfalls", params: params
@@ -45,7 +45,7 @@ RSpec.describe "POST /api/games/:id/frames/:number/pinfalls" do
 
   context 'when params are missing' do
     it 'returns 400' do
-      game = Game.create_with_initial_state!
+      game = GameService.create_with_initial_state!
       params = { ball_number: 1 }
 
       post "/api/games/#{game.id}/frames/1/pinfalls", params: params

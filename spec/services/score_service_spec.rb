@@ -6,7 +6,7 @@ RSpec.describe ScoreService do
   describe '#calculate_score' do
     context 'when game is perfect' do
       it 'returns the max score, that is 300' do
-        perfect_game = Game.create_with_initial_state!
+        perfect_game = GameService.create_with_initial_state!
 
         perfect_game.frames.each { |frame| frame.balls << Ball.new(number: 1, pinfalls: 10) }
         last_frame = perfect_game.frames.find_by(number: 10)
@@ -23,7 +23,7 @@ RSpec.describe ScoreService do
 
     context 'when dealing with a spare' do
       it 'adds the next pinfall to the score of the spare frame' do
-        game = Game.create_with_initial_state!
+        game = GameService.create_with_initial_state!
         first_frame = game.frames.find_by(number: 1)
         second_frame = game.frames.find_by(number: 2)
         
@@ -41,7 +41,7 @@ RSpec.describe ScoreService do
 
     context 'when game has no pinfalls yet' do
       it 'has 0 total_score' do
-        game = Game.create_with_initial_state!
+        game = GameService.create_with_initial_state!
         service = described_class.new(game.id)
 
         service.calculate_score

@@ -7,6 +7,16 @@ class GameService
     @game = Game.find(game_id)
   end
 
+  def self.create_with_initial_state!
+    game = Game.new
+    game.frames = (1..10).map do |number|
+      Frame.new(number: number)
+    end
+    game.save!
+
+    game
+  end
+
   def add_pinfalls!(frame_number:, ball_number:, pinfalls:)
     @current_frame = game.frames.find_by!(number: frame_number)
     @pinfalls = pinfalls

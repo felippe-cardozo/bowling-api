@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe "GET /api/games/:id/score" do
-  let(:game) { Game.create_with_initial_state! }
+  let(:game) { GameService.create_with_initial_state! }
 
   context 'when game is perfect' do
     it 'returns score 300 and detailed score by frames' do
