@@ -34,6 +34,17 @@ RSpec.describe "GET /api/games/:id/score" do
                          { number: 10, score: 30 }] }
       )
     end
+
+    it 'matches the schema' do
+      post '/api/games'
+      game.frames.each do |frame|
+        frame.balls << Ball.new(number: 1, pinfalls: 10)
+      end
+
+      get "/api/games/#{game.id}/score"
+
+      expect(response).to match_response_schema('score')
+    end
   end
 
   context 'when game is not found' do

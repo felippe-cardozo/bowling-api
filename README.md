@@ -2,9 +2,9 @@
 
 ## Intro
 This application provides a basic API for managing bowling games. Currently, three endpoints are exposed:
-- `POST /api/games` creates a new game
-- `POST /api/games/:id/frames/:number/pinfalls {ball_number:, pinfalls:}` Registers the amount of pins knocked by a ball delivery
-- `GET /api/games/:id/score` returns the score of the game detailed by frame
+- `POST /api/games` creates a new game. Response [schema](./spec/support/schemas/game.json)
+- `POST /api/games/:id/frames/:number/pinfalls {ball_number:, pinfalls:}` Registers the amount of pins knocked by a ball delivery. Response body is empty, since only the status_code should be relevant.
+- `GET /api/games/:id/score` returns the score of the game detailed by frame. Response [schema](./spec/support/schemas/score.json)
 
 ## Architecture Overview
 The application is structured around two services, `GameService` and `ScoreService` that encapsulate the writing and reading flow respectively.

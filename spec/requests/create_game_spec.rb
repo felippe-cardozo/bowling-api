@@ -12,4 +12,10 @@ RSpec.describe "POST /api/games" do
     expect(response).to be_successful
     expect(JSON.parse(response.body).keys).to include('id')
   end
+
+  it 'matches the schema' do
+    post '/api/games'
+
+    expect(response).to match_response_schema('game')
+  end
 end

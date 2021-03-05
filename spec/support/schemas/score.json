@@ -1,0 +1,17 @@
+{"type": "object",
+ "required": ["total_score", "frames_score"],
+ "properties": {
+   "total_score": {"type": "integer"},
+   "frames_score": {
+     "type": "array",
+     "items": {
+       "type": "object",
+       "required": ["number", "score"],
+       "properties": {
+         "number": {"type": "integer"},
+         "score": {"type": "integer"}
+       }
+     }
+   }
+ }
+}
